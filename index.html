@@ -322,6 +322,25 @@
 
     <script>
 
+
+	var noise = new Howl({
+		src: "res/images/audio/7.ogg",
+		loop: true,
+		volume: "0.8"
+	});
+
+	var bgm = new Howl({
+		src: "res/images/audio/superbgm.ogg",
+		volume: 0.5,
+		loop: true
+	});
+
+	var intro = new Howl({
+		src: "res/images/audio/welcome.ogg",
+		volume: 0.7,
+		loop: false
+	});
+
 	document.addEventListener("DOMContentLoaded", function() {
 	  // Simulate the play event for the intro element
 	  didPlay = true;
