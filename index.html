@@ -322,23 +322,24 @@
 
     <script>
 
-	intro.addEventListener("play", function () {
-  didPlay = true;
-  PlayText();
-  $("#intro").addClass("ready");
-  setTimeout(function () {
-    window.scrollTo(0, 0);
-  }, 1700);
-  setTimeout(function () {
-    noise.play();
-  }, 1700);
-  setTimeout(function () {
-    $("#intro").addClass("destroyed");
-  }, 1700);
-  setTimeout(function () {
-    bgm.play();
-  }, 2230);
-});
+	document.addEventListener("DOMContentLoaded", function() {
+	  // Simulate the play event for the intro element
+	  didPlay = true;
+	  PlayText();
+	  $("#intro").addClass("ready");
+	  setTimeout(function () {
+	    window.scrollTo(0, 0);
+	  }, 1700);
+	  setTimeout(function () {
+	    noise.play();
+	  }, 1700);
+	  setTimeout(function () {
+	    $("#intro").addClass("destroyed");
+	  }, 1700);
+	  setTimeout(function () {
+	    bgm.play();
+	  }, 2230);
+	});
 	    
     </script>
 
