@@ -196,34 +196,24 @@
 		setTimeout(function(){ $("#intro h1").html("Unlink the world.<br>Unlock the rest.") }, 1580);
 	}
 
-    window.addEventListener("load", function (event) {
-  var didPlay = false;
-  intro.on("play", function () {
-    didPlay = true;
-    PlayText();
-    $("#intro").addClass("ready");
-    setTimeout(function () {
-      window.scrollTo(0, 0);
-    }, 1700);
-    setTimeout(function () {
-      noise.play();
-    }, 1700);
-    setTimeout(function () {
-      $("#intro").addClass("destroyed");
-    }, 1700);
-    setTimeout(function () {
-      bgm.play();
-    }, 2230);
-  });
-  intro.play();
-
-  $("#intro h6").click(function () {
-    $("#intro").hide();
-  });
-
-  noise.play();
-  bgm.play();
+    intro.addEventListener("play", function () {
+  didPlay = true;
+  PlayText();
+  $("#intro").addClass("ready");
+  setTimeout(function () {
+    window.scrollTo(0, 0);
+  }, 1700);
+  setTimeout(function () {
+    noise.play();
+  }, 1700);
+  setTimeout(function () {
+    $("#intro").addClass("destroyed");
+  }, 1700);
+  setTimeout(function () {
+    bgm.play();
+  }, 2230);
 });
+
 
 
     $("#lain").click(function() {
