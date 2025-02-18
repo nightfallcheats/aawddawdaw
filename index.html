@@ -196,24 +196,6 @@
 		setTimeout(function(){ $("#intro h1").html("Unlink the world.<br>Unlock the rest.") }, 1580);
 	}
 
-    intro.addEventListener("play", function () {
-  didPlay = true;
-  PlayText();
-  $("#intro").addClass("ready");
-  setTimeout(function () {
-    window.scrollTo(0, 0);
-  }, 1700);
-  setTimeout(function () {
-    noise.play();
-  }, 1700);
-  setTimeout(function () {
-    $("#intro").addClass("destroyed");
-  }, 1700);
-  setTimeout(function () {
-    bgm.play();
-  }, 2230);
-});
-
 
 
     $("#lain").click(function() {
@@ -338,6 +320,29 @@
             <a href="https://classic.systemspace.network/preferences.php"><img id="knob2" src="https://classic.systemspace.network/res/img/headerbar/knobs/prefsknob.png"/></a>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+
+	intro.addEventListener("play", function () {
+  didPlay = true;
+  PlayText();
+  $("#intro").addClass("ready");
+  setTimeout(function () {
+    window.scrollTo(0, 0);
+  }, 1700);
+  setTimeout(function () {
+    noise.play();
+  }, 1700);
+  setTimeout(function () {
+    $("#intro").addClass("destroyed");
+  }, 1700);
+  setTimeout(function () {
+    bgm.play();
+  }, 2230);
+});
+	    
+    </script>
+
+
+	
 </body>
 </html>
