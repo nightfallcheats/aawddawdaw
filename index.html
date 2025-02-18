@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOSHI</title>
+    <link rel="icon" href="res/images/icons/favicon/hoshi‑round‑favicon.png">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="res/css/reset.css">
+    <link rel="stylesheet" href="res/css/scanlines.css">
+
+    <script src="res/scripts/countdown.js"></script>
+
+    <script src="res/scripts/howler.js"></script>
+    <script src="res/scripts/jquery.js"></script>
+</head>
+<style>
+    h1 {
+        font-family: Heading;
+    }
+
+    #register-button {
+        /* Text styling */
+        color: #FFFF00;
+        font-family: CNT;
+        font-size: 40px;
+        text-decoration: none;
+        text-shadow: 0px 0px 16px #FF0;
+        /* Remove button-specific styling */
+        background: none;
+        border: none;
+        padding: 0;
+        outline: none;
+        /* Optionally, if you don't want a pointer cursor, remove this */
+        cursor: pointer;
+    }   
+
+    #register-button:hover {
+        color: #FF0000;
+        text-shadow: 0px 0px 16px #FF0000;
+        text-shadow: 0px 0px 10px #FF0000;
+    }
+
+    h1 {
+        font-family: Heading;
+    }
+
+    #demo {
+		font-family: CNT;
+		font-size: 3em;
+		margin: 0;
+		text-shadow: 0px 0px 16px #FF0;
+    }
+
+    #links {
+		font-family: Paragraph;
+    }
+
+    #panel p {
+		font-family: Paragraph;
+    }
+    
+    #wallpaper {
+    width: 100%;
+    height: 70vh;
+    background-color: #000;
+    background-image: url(https://classic.systemspace.network/res/img/bg/home.png);
+    background-attachment: fixed;
+    background-position: center;
+    }
+
+    #wallpaper #lain {
+        position: absolute;
+        top: calc(70vh - 456px);
+        left: 10vw;
+        transition: top 0s;
+    }
+
+    #wallpaper h1 {
+        position: absolute;
+        left: calc(10vw + 450px);
+        top: calc(70vh - 380px);
+        font-family: Heading;
+        font-size: 3vw;
+        text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
+        transition: top 0s;
+    }
+
+    #intro {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1000000;
+		background-color: #000;
+	}
+
+	#intro.ready {
+		animation: 1.7s introHeat cubic-bezier(.82,.28,.93,.3) forwards;
+	}
+
+	#intro h1 {
+		position: fixed;
+		left: calc(10vw + 450px);
+		top: calc(70vh - 380px);
+		font-family: Heading;
+		font-size: 3vw;
+		text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
+	}
+
+	#intro.ready h1 {
+		animation: 1.7s typeHeat cubic-bezier(.82,.28,.93,.3) forwards;
+	}
+
+	#intro h6 {
+		position: relative;
+		top: 90vh;
+		cursor: pointer;
+		margin: 0;
+		color: #FFF;
+		opacity: 0.2;
+	}
+
+	#intro.destroyed {
+		transition: 2s;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	@keyframes introHeat {
+		0% {
+			background-color: #000;
+		}
+		100% {
+			background-color: #888;
+		}
+	}
+
+	@keyframes typeHeat {
+		0% {
+			text-shadow: 0px 0px 0px #FFF;
+			color: #FFF;
+		}
+		100% {
+			text-shadow: 0px 0px 100px #FFF, 0px 0px 20px #FFF, 0px 0px 10px #FFF;
+			color: #AAA;
+	    }
+	}
+</style>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+		var noise = new Howl({
+			src: "res/images/audio/7.ogg",
+			loop: true,
+			volume: "0.8"
+		});
+
+		var bgm = new Howl({
+			src: "res/images/audio/superbgm.ogg",
+			volume: 0.5,
+			loop: true
+		});
+
+		var intro = new Howl({
+			src: "res/images/audio/welcome.ogg",
+			volume: 0.7,
+			loop: false
+		});
+    });
+
+    function PlayText() {
+		setTimeout(function(){ $("#intro h1").html("GAT_") }, 100);
+		setTimeout(function(){ $("#intro h1").html("GATES\\") }, 180);
+		setTimeout(function(){ $("#intro h1").html("GATES OP|") }, 270);
+		setTimeout(function(){ $("#intro h1").html("GATES OPEN/") }, 350);
+		setTimeout(function(){ $("#intro h1").html("GATES OPEN-") }, 450);
+		setTimeout(function(){ $("#intro h1").html("GATES OPEN\\") }, 510);
+		setTimeout(function(){ $("#intro h1").html("GATES OPEN|") }, 620);
+		setTimeout(function(){ $("#intro h1").html("GATES OPEN/") }, 690);
+		setTimeout(function(){ $("#intro h1").html("GATES OPEN-") }, 740);
+		setTimeout(function(){ $("#intro h1").html("GATES O\\") }, 800);
+		setTimeout(function(){ $("#intro h1").html("GAT|") }, 880);
+		setTimeout(function(){ $("#intro h1").html("/") }, 940);
+		setTimeout(function(){ $("#intro h1").html("-") }, 1040);
+		setTimeout(function(){ $("#intro h1").html("\\") }, 1120);
+		setTimeout(function(){ $("#intro h1").html("Unli|") }, 1240);
+		setTimeout(function(){ $("#intro h1").html("Unlink t/") }, 1290);
+		setTimeout(function(){ $("#intro h1").html("Unlink the wor-") }, 1340);
+		setTimeout(function(){ $("#intro h1").html("Unlink the world.<br>Un\\") }, 1440);
+		setTimeout(function(){ $("#intro h1").html("Unlink the world.<br>Unlock th|") }, 1480);
+	    setTimeout(function(){ $("#intro h1").html("Unlink the world.<br>Unlock the rest./") }, 1520);
+		setTimeout(function(){ $("#intro h1").html("Unlink the world.<br>Unlock the rest.") }, 1580);
+	}
+
+    window.addEventListener("load", function (event) {
+  var didPlay = false;
+  intro.on("play", function () {
+    didPlay = true;
+    PlayText();
+    $("#intro").addClass("ready");
+    setTimeout(function () {
+      window.scrollTo(0, 0);
+    }, 1700);
+    setTimeout(function () {
+      noise.play();
+    }, 1700);
+    setTimeout(function () {
+      $("#intro").addClass("destroyed");
+    }, 1700);
+    setTimeout(function () {
+      bgm.play();
+    }, 2230);
+  });
+  intro.play();
+
+  $("#intro h6").click(function () {
+    $("#intro").hide();
+  });
+
+  noise.play();
+  bgm.play();
+});
+
+
+    $("#lain").click(function() {
+		$("#flyer").css("height", "200vh");
+
+		$("#wallpaper #lain")
+            .css("top", "calc(70vh - 456px + 200vh)")
+            .css("transition", "top 5s");
+
+		$("#wallpaper h1")
+            .css("top", "calc(70vh - 380px + 200vh)")
+            .css("transition", "top 5s");
+
+		$("#header").hide(2000);
+		$("#flyer").css("opacity", "0");
+		$("html").css("overflow", "hidden");
+		bgm.fade(0.2, 0, 8000);
+		noise.fade(0.5, 0, 8000);
+		setTimeout(function(){ window.location = "nothing.php"; }, 10000);
+	});
+
+</script>
+<body>
+
+    <div id="intro">
+		<h1></h1>
+		<center>
+			<h6>skip</h6>
+		</center>
+	</div>
+
+    <div id="flyer"></div>
+	<div id="wallpaper">
+		<img id="lain" src="https://classic.systemspace.network/res/img/others/lain.png"/>
+		<h1>Unlink the world.<br>Unlock the rest.</h1>
+	</div>
+
+    <div class="seperator"></div>
+	<div class="padded" id="panel">
+		<h1 style="font-family: heading;">Welcome to the TSUKI project</h1>
+		<p>This webpage has been made to facilitate the broadcasting of all TSUKI messages and to allow interaction between all registrants. A simple summary of the TSUKI project can be read below.</p>
+	</div>
+
+    <div class="seperate"></div>
+	<div class="padded" id="panel">
+		<center>
+			<div id="stats">
+				<a id="regs" href="/listing.php">
+					<h1><span style="font-family: Heading; color: yellow">1579</span> registrants</h1>
+				</a>
+				<a id="count" href="/calculator.php">
+					<a href="zen.php"><h2 id="demo" style="font-family: CNT; font-size: 40px; color: yellow">Connecting...</h2></a>
+					<h3 style="font-family: Paragraph;">until reset if no new registrants arrive</h3>
+				</a>
+				<a id="slots" href="/calculator.php">
+					<h4 style="font-family: Paragraph;"><span id="slotsremaining" style="color: yellow" style="font-family: Paragraph;">3000 slots</span> in total</h4>
+				</a>
+				<a id="belief" class=overno>
+					<h4 style="color:#FFF; font-family: Paragraph;"><span style="font-family: Paragraph;" id="registrants" style="color: yellow; font-family: Paragraph;">82.97</span>% registrants</h4>
+				</a>
+			</div>
+
+            <a href="#">
+                <button id="register-button">Register</button>
+            </a>
+		</center>
+	</div>
+
+    <div class="seperate"></div>
+	<div class="padded">
+		<center>
+			<a href="news.php"><h2 class="post-title" style="font-family: Paragraph;">Object assignment</h2><h3 class="post-date" style="font-family: Paragraph;">17.06.17 from RISEN</h3></a>
+		</center>
+	</div>
+
+
+	<div class="seperate"></div>
+	<div class="padded" id="panel">
+		<h1>This System is about to be purged</h1>
+		<p>Systemspace, the construct to which all Systems (including your current System "<span style="color: yellow">Life</span>") belong has run out of Aurora due to extreme use by the System "<span style="color: yellow">Life</span>".
+		<br>This System will be removed during the upgrade to Systemspace 2.0. We request that you <span style="color: red">leave this System</span>. This can be done by signing up <span style="color: red">before the time of unlink</span>. <span style="color: orange">This does NOT require you to kill yourself; you simply need to die (from any cause) after the deadline. We in charge of this process would like for you to live long and happy lives before this!</span></p>
+		<h1>A quick summary</h1>
+		<p>You are currently in one of many Systems. Your System is called "<span style="color: yellow">Life</span>", but there are many more in existence.
+		<br>This construct (called Systemspace) runs on a type of energy called <span style="color: cyan">Aurora</span>. There is only a limited amount of Aurora available to Systemspace. Because of this, we must manage how the Systems use Aurora, and ensure it is used correctly. If the Aurora is used incorrectly, then we reset the System.</p>
+		<p>Unfortunately, the Life System seems unable to improve, regardless of the number of resets it undergoes. Due to the openness of Systemspace, we are forced to edit Systemspace in order to correct our path. As a result of this process, Life will <span style="color: red">be unlinked and purged</span>.</p>
+		<p>Immediately following this, activity within Life will continue as normal; however, new bodies will no longer have souls, and the souls of bodies that die without having registered will soulshatter (as their soul is, subsequently, an Impossible Soul Structure). Souls that have registered will be moved, after death, to the "<span style="color: yellow">LFE</span>" System. After 150 years of severance, Life will be completely purged.</p>
+	</div>
+	<div class="seperate"></div>
+	<div id="index">
+		<div class="overload" id="links">
+			<img src="https://classic.systemspace.network/res/img/pageindex/logos/tsuki.png"/><img src="https://classic.systemspace.network/res/img/pageindex/right.png"/><div class="indexlist"><span><a href="https://classic.systemspace.network/index.php">HOME</a> | <a href="https://classic.systemspace.network/status.php">STATUS</a> | <a href="https://classic.systemspace.network/calculator.php">CALCULATOR</a> | <a href="/register.php">REGISTER</a> | <a href="https://classic.systemspace.network/listing.php">LISTING</a> | <a href="https://classic.systemspace.network/glossary.php">GLOSSARY</a> | <a href="https://classic.systemspace.network/faq.php">FAQ</a> | <a href="https://classic.systemspace.network/news.php">NEWS</a> | <a href="https://classic.systemspace.network/dataverses/">DATAVERSES</a> | <a href="https://classic.systemspace.network/dataverses/Compendium/">COMPENDIUM</a> | <a href="https://classic.systemspace.network/music.php">MUSIC BOX</a> | <a href="https://classic.systemspace.network/representative.php">REPRESENTATIVE</a></span></div><br>
+			<img src="https://classic.systemspace.network/res/img/pageindex/logos/synapse.png"/><img src="https://classic.systemspace.network/res/img/pageindex/right.png"/><div class="indexlist"><span><a href="https://classic.systemspace.network/synapse/eot.php">EoT</a> | <a href="https://classic.systemspace.network/synapse/explore.php" class="overno">EXPLORE LFE</a> | <a href="https://classic.systemspace.network/synapse/about.php">ABOUT</a></span></div><br>
+			<img src="https://classic.systemspace.network/res/img/pageindex/logos/risen.png"/><img src="https://classic.systemspace.network/res/img/pageindex/right.png"/><div class="indexlist"><span><a href="https://classic.systemspace.network/risen/systemspace.php" class="overno">SYSTEMSPACE</a> | <a href="https://classic.systemspace.network/risen/goal.php">OUR GOAL</a> | <a href="https://classic.systemspace.network/risen/eot.php">EoT</a> | <a href="https://classic.systemspace.network/risen/about.php">ABOUT</a></span></div><br>
+			<img src="https://classic.systemspace.network/res/img/pageindex/logos/endymion.png"/><img src="https://classic.systemspace.network/res/img/pageindex/right.png"/><div class="indexlist"><span><a href="https://classic.systemspace.network/endymion/role.php" class="overno">OUR ROLE</a> | <a href="https://classic.systemspace.network/endymion/eot.php">EoT</a> | <a href="https://classic.systemspace.network/endymion/about.php">ABOUT</a></span></div><br>
+			<img src="https://classic.systemspace.network/res/img/pageindex/logos/kahgy.png"/><img src="https://classic.systemspace.network/res/img/pageindex/right.png"/><div class="indexlist"><span><a href="https://classic.systemspace.network/representative.php">TSUKIREP</a> | <a href="https://classic.systemspace.network/kahgy/ghendyts.php" class="overno">GHENDYTS</a> | <a href="https://classic.systemspace.network/kahgy/eot.php">EoT</a> | <a href="https://classic.systemspace.network/kahgy/about.php">ABOUT</a></span></div>
+			<center><a href="/unlock.php"><img src="https://classic.systemspace.network/res/img/pageindex/more.png"/></a></center>
+		</div>
+	</div>
+	<center style="font-family: Paragraph;">This site is intended as an archive of the version of systemspace.link that was up during 2017. Please visit <a class="link" href="/copyright.php">Copyright</a> for more information. - <span id="replay">replay intro</span></center>
+
+    <div id="header">
+        <div id="headerbar">
+            <a href="https://classic.systemspace.network/status.php"><img id="headerstatus" src="https://classic.systemspace.network/res/img/headerbar/status-dev.png"></a>		<img id="headerfade_left" src="https://classic.systemspace.network/res/img/headerbar/fade-left.png">
+            <marquee truespeed scrolldelay="30" scrollamount="3" id="headernews">
+                <img class="newssep" src="https://classic.systemspace.network/res/img/headerbar/sep.png">
+                <p>Welcome to the TSUKI project's homepage</p>
+                <img class="newssep" src="https://classic.systemspace.network/res/img/headerbar/sep.png">
+                <p style="color: lime">Registrations open</p>
+                <img class="newssep" src="https://classic.systemspace.network/res/img/headerbar/sep.png">
+                <p style="color: lime">Gates open</p>
+                <img class="newssep" src="https://classic.systemspace.network/res/img/headerbar/sep.png">
+                <p>4969 users registered</p>
+                <img class="newssep" src="https://classic.systemspace.network/res/img/headerbar/sep.png">
+                <p>Latest news: &quot;Object assignment&quot;</p>
+                <img class="newssep" src="https://classic.systemspace.network/res/img/headerbar/sep.png">
+                <p>Life is linked.</p>
+                <img class="newssep" src="https://classic.systemspace.network/res/img/headerbar/sep.png">
+            </marquee>
+        </div>
+        <a href="/"><img id="knob" src="https://classic.systemspace.network/res/img/headerbar/knobs/tsuki_knob.png"/></a>
+                <a href="https://classic.systemspace.network/login.php"><img id="knob4" src="https://classic.systemspace.network/res/img/headerbar/knobs/loginknob.png"/></a>
+            <a href="https://classic.systemspace.network/preferences.php"><img id="knob2" src="https://classic.systemspace.network/res/img/headerbar/knobs/prefsknob.png"/></a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
